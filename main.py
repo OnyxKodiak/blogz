@@ -19,5 +19,27 @@ class Blog(db.Model):
         self.body = body
         self.created = datetime.utcnow()
 
+@app.route("/")
+def index():
+    return redirect("/blog")
+
+@app.route("/blog")
+def blog_post():
+
+    blog_id = request.args.get('id')
+    if (blog_id):
+        blog = Blog.query.get(blog_id)
+        return render_template('single_entry.html', title="Blog Entry", blog=blog)
+    
+    all_post = Blog.query.all()   
+    return render_template('index.html', title="All Post", all_post=all_post)
+    
+
+
+@app.route("/newpost", methods=["GET", "POST"])
+def newpost():
+     return render_template('new_entry.html', title="Create new blog entry")
+
+
 if __name__ == '__main__':
     app.run()

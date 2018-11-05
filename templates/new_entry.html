@@ -1,4 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <h1>New Entry</h1>
+    <form action="/newpost" method="post">
+
+        <label for="title_field">Today's Blog Title</label>
+        <input id="title_field" name="title" type="text" value="{{ new_entry_title }}">
+
+        <label for="body_field">Blog Body:</label>
+        <textarea rows="4" cols="50" id="body_field" name="body" >{{ new_entry_body }}</textarea>
+
+        <input id="submit_button" type="submit">
+    </form>
 {% endblock %}
