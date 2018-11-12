@@ -4,7 +4,7 @@ from datetime import datetime
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://build-a-blog:build-a-blog@localhost:8889/build-a-blog'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://blogz:blogz@localhost:8889/blogz'
 app.config['SQLALCHEMY_ECHO'] = True
 db = SQLAlchemy(app)
 app.secret_key= "#someSecretString"
@@ -29,7 +29,7 @@ def display_blog():
     blog_id = request.args.get("id")
     if (blog_id) == None:
         blogs = Blog.query.all()
-        return render_template("index.html", title="All Post", blogs=blogs)
+        return render_template("blog.html", title="All Post", blogs=blogs)
     else:
        blog = Blog.query.get(blog_id)
        return render_template("single_entry.html", title="Blog Entry", blog=blog)
