@@ -2,9 +2,20 @@
 <html>
     <head>
         <title>{{title}}</title>
+        <script type="text/javascript">
+
+            // polyfill for RegExp.escape
+            if(!RegExp.escape) {
+              RegExp.escape = function(s) {
+                return String(s).replace(/[\\^$*+?.()|[\]{}]/g, '\\$&');
+              };
+            }
+          
+          </script>
     </head>
 <body>
     <nav>
+        <a href="/">Home</a>
         <a href="/blog">List all entries</a>
         <a href="/newpost">Create new entry</a>
         <a href="/login">Login</a>

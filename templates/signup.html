@@ -8,20 +8,26 @@
       <tr>
         <td><label for="username">Username</label></td>
         <td>
-          <input name="username" type="text" value="{{username}}" required>
+          <input name="username" type="text" value="{{username}}" required minlength="3" maxlength="20">
         </td>
       </tr>
       <tr>
         <td><label for="password">Password</label></td>
         <td>
-          <input name="password" type="password" required>
+          <input name="password" type="password" required minlength="3" maxlength="20" 
+                pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" 
+                title="Please include at least 1 uppercase character, 1 lowercase character, and 1 number." 
+                onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');
+                if(this.checkValidity()) form.verify.pattern = RegExp.escape(this.value);">
         </td>
       </tr>
       <tr>
         <td><label for="verify">Re-enter Password</label></td>
         <td>
-          <input name="verify" type="password" required>
-          <span class="error">{{verify_error}}</span>
+          <input name="verify" type="password" required minlength="3" maxlength="20"
+          pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"
+          title="Please enter the same Password as above"
+          onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');">
         </td>
       </tr>
     </table>
